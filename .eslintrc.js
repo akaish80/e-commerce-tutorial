@@ -23,7 +23,6 @@ module.exports = {
     indent: ["error", 2, { ignoredNodes: ["JSXElement"] }],
     "react/jsx-indent": ["error", 2],
     "max-len": "off",
-    "no-console": 0,
-    "react/prop-types": [2, { ignore: ["children"] }]
+    "no-console": 0
   }
 };
