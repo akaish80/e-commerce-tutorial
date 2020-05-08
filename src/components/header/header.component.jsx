@@ -1,25 +1,31 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import { connect } from 'react-redux';
 import './header.styles.scss';
 import { Link } from 'react-router-dom';
 
+import { createStructuredSelector } from 'reselect';
+
 import { auth } from '../../firebase/firbase.utils';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropDown from '../cart-dropdown/cart-dropdown.component';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { selectCartHidden } from '../../redux/cart/cart.selectors';
+
 
 const Header = ({ currentUser, hidden }) => (
-  <div className='header'>
-    <Link to='/' className='logoContainer'>
-      <Logo className='logo' />
+  <div className="header">
+    <Link to="/" className="logoContainer">
+      <Logo className="logo" />
     </Link>
-    <div className='options'>
-      <Link className='option' to='/shop'>SHOP</Link>
-      <Link className='option' to='/contact'>CONTACT</Link>
+    <div className="options">
+      <Link className="option" to="/shop">SHOP</Link>
+      <Link className="option" to="/contact">CONTACT</Link>
       {
-        currentUser ?
-          <div className='option' onClick={() => auth.signOut()}> SIGN OUT</div>
-          : <Link className='option' to='/signin'>SIGN IN</Link>
+        currentUser
+          ? <div className="option" onClick={() => auth.signOut()}> SIGN OUT</div>
+          : <Link className="option" to="/signin">SIGN IN</Link>
       }
       <CartIcon />
 
@@ -28,9 +34,9 @@ const Header = ({ currentUser, hidden }) => (
   </div>
 );
 
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-  currentUser,
-  hidden,
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden,
 });
 
 export default connect(mapStateToProps)(Header);
