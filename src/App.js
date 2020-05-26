@@ -13,13 +13,14 @@ import { setCurrentUser } from './redux/user/user.action';
 import { selectCurrentUser } from './redux/user/user.selectors';
 import CheckoutPage from './pages/checkout/checkout.component';
 
+
 class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
     const { setCurrentUser } = this.props;
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      // createUserProfileDocument(user);
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
@@ -45,8 +46,8 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/shop' component={ShopPage} />
-          <Route exact path='/signin' render={() => this.props.currentUser ? (<Redirect to='.' /> ): (<SignInAndSignUpPage />)} />
-          <Route exact path='/checkout' component={CheckoutPage}/>
+          <Route exact path='/signin' render={() => this.props.currentUser ? (<Redirect to='.' />) : (<SignInAndSignUpPage />)} />
+          <Route exact path='/checkout' component={CheckoutPage} />
         </Switch>
       </div>
     );
