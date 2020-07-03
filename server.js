@@ -17,9 +17,19 @@ app.use(cors());
 if (process.env.NODE_ENV === 'production') {
  app.use(express.static(path.join(__dirname, 'client/build')));
 
- app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
- });
+ app.get('/', function (req, res) {
+
+  if (req.originalUrl) {
+   const originalUrlParts = req.originalUrl.split('/');
+   const isRootReq = originalUrlParts.length === 2;
+   const isFavIconReq = originalUrlParts.pop() === 'favicon.ico';
+   if (isFavIconReq) {
+    res.sendFile(path.join(__dirname, 'client/build', 'favicon.ico'));
+   } else {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+   }
+  }
+  });
 }
 
 app.listen(port, error => {
