@@ -1,22 +1,32 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/prefer-default-export */
 export const addItemToCart = (cartItems, cartItemToAdd) => {
-  const existingCartItem = cartItems.find((cartItem) => cartItem.id === cartItemToAdd.id);
+  const existingCartItem = cartItems.find(
+    cartItem => cartItem.id === cartItemToAdd.id
+  );
   if (existingCartItem) {
-    return cartItems.map((cartItem) => (cartItem.id === cartItemToAdd.id
+    return cartItems.map(cartItem =>
+      cartItem.id === cartItemToAdd.id
       ? { ...cartItem, quantity: cartItem.quantity + 1 }
-      : cartItem));
+        : cartItem
+    );
   }
 
   return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
 };
 
-export const removeItem = (cartItems, carItemsToRemove) => {
-  const existingCartItem = cartItems.find((cartItem) => cartItem.id === carItemsToRemove.id);
+export const removeItemFromCart = (cartItems, cartItemToRemove) => {
+  const existingCartItem = cartItems.find(
+    cartItem => cartItem.id === cartItemToRemove.id
+  );
 
   if (existingCartItem.quantity === 1) {
-    return cartItems.filter((cartItem) => cartItem.id !== carItemsToRemove.id);
+    return cartItems.filter(cartItem => cartItem.id !== cartItemToRemove.id);
   }
 
-  return cartItems.map((cartItem) => ((cartItem.id === carItemsToRemove.id) ? { ...cartItem, quantity: cartItem.quantity - 1 } : cartItem));
+  return cartItems.map(cartItem =>
+    cartItem.id === cartItemToRemove.id
+      ? { ...cartItem, quantity: cartItem.quantity - 1 }
+      : cartItem
+  );
 };

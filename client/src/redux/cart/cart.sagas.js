@@ -1,10 +1,10 @@
 import { all, call, takeLatest, put, select } from "redux-saga/effects";
-import { getUserCartRef } from "../../firebase/firbase.utils";
+import { getUserCartRef } from "../../firebase/firebase.utils";
 
 import UserActionTypes from "../user/user.types";
 import CartActionTypes from './cart.types';
 import { selectCurrentUser } from '../user/user.selectors';
-import { clearCart, setCartFromFirebase } from './cart.action';
+import { clearCart, setCartFromFirebase } from './cart.actions';
 import { selectCartItems } from './cart.selectors';
 
 export function* clearCartOnSignOut() {

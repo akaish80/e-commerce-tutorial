@@ -10,7 +10,7 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up
 
 import { selectCurrentUser } from './redux/user/user.selectors';
 import CheckoutPage from './pages/checkout/checkout.component';
-import { checkUserSession } from './redux/user/user.action';
+import { checkUserSession } from './redux/user/user.actions';
 
 
 const App = ({ checkUsrSession, currentUser }) => {

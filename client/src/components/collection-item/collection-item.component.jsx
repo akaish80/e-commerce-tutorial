@@ -13,7 +13,7 @@ import {
   PriceContainer,
 } from './collection-item.style';
 
-import { addItem } from '../../redux/cart/cart.action';
+import { addItem } from '../../redux/cart/cart.actions';
 
 const CollectionItem = ({
   item, addItem,
