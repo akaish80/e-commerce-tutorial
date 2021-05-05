@@ -29,9 +29,18 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+app.get('/', function(request, response) {
+    var result = 'App is running'
+    response.send(result);
+}).listen(app.get('port'), function() {
+    console.log('App is running, server is listening on port ', app.get('port'));
+});
+
 app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
+
+
 
 app.listen(port, (error) => {
   if (error) throw error;
